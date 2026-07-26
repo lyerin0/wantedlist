@@ -22,13 +22,7 @@
     --sans:'IBM Plex Sans KR',sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{
-    font-family:var(--sans);
-    background:var(--bg);
-    color:var(--text);
-    min-height:100vh;
-  }
-  /* 배경 그리드 */
+  body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;}
   body::before{
     content:"";position:fixed;inset:0;pointer-events:none;
     background-image:
@@ -36,70 +30,39 @@
       linear-gradient(90deg, rgba(36,48,71,.18) 1px, transparent 1px);
     background-size:48px 48px;
   }
-
-  /* 상단 보안 띠 */
   .secure-bar{
-    background:var(--red);
-    color:#fff;
-    font-family:var(--mono);
-    font-size:11px;letter-spacing:.22em;
-    text-align:center;padding:6px 10px;
-    text-transform:uppercase;
+    background:var(--red);color:#fff;
+    font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+    text-align:center;padding:6px 10px;text-transform:uppercase;
     position:relative;z-index:1;
   }
-
   header{
     position:relative;z-index:1;
     border-bottom:1px solid var(--line);
     background:linear-gradient(180deg, rgba(17,24,39,.9), rgba(10,15,26,.6));
     padding:34px 20px 26px;
   }
-  .hd-inner{
-    max-width:1180px;margin:0 auto;
-    display:flex;align-items:center;gap:22px;flex-wrap:wrap;
-  }
-  /* 기관 엠블럼 */
+  .hd-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
   .emblem{
     width:78px;height:78px;flex-shrink:0;border-radius:50%;
     border:2px solid var(--text-dim);
-    display:flex;align-items:center;justify-content:center;
-    position:relative;
+    display:flex;align-items:center;justify-content:center;position:relative;
     background:radial-gradient(circle at 50% 35%, #1B2537, #0D1420 75%);
   }
-  .emblem::before{
-    content:"";position:absolute;inset:6px;border-radius:50%;
-    border:1px solid var(--line);
-  }
-  .emblem span{
-    font-size:30px;color:var(--gold);
-    text-shadow:0 0 14px rgba(201,162,39,.5);
-  }
+  .emblem::before{content:"";position:absolute;inset:6px;border-radius:50%;border:1px solid var(--line);}
+  .emblem span{font-size:30px;color:var(--gold);text-shadow:0 0 14px rgba(201,162,39,.5);}
   .hd-titles{flex:1;min-width:240px;}
-  .hd-org{
-    font-family:var(--mono);font-size:11px;letter-spacing:.35em;
-    color:var(--text-dim);text-transform:uppercase;margin-bottom:6px;
-  }
-  h1{
-    font-family:'Archivo Black',var(--sans);
-    font-size:clamp(24px,4.6vw,40px);
-    letter-spacing:.02em;line-height:1.1;
-    color:#fff;
-  }
+  .hd-org{font-family:var(--mono);font-size:11px;letter-spacing:.35em;color:var(--text-dim);text-transform:uppercase;margin-bottom:6px;}
+  h1{font-family:'Archivo Black',var(--sans);font-size:clamp(24px,4.6vw,40px);letter-spacing:.02em;line-height:1.1;color:#fff;}
   h1 .accent{color:var(--red);}
-  .hd-sub{
-    margin-top:8px;font-size:13.5px;color:var(--text-dim);
-    letter-spacing:.08em;
-  }
+  .hd-sub{margin-top:8px;font-size:13.5px;color:var(--text-dim);letter-spacing:.08em;}
   .hd-meta{
     font-family:var(--mono);font-size:11px;color:var(--text-dim);
-    text-align:right;line-height:1.9;letter-spacing:.06em;
-    min-width:170px;
+    text-align:right;line-height:1.9;letter-spacing:.06em;min-width:170px;
   }
   .hd-meta b{color:var(--gold);font-weight:600;}
-  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;
-    background:#2ECC71;margin-right:6px;box-shadow:0 0 8px #2ECC71;}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#2ECC71;margin-right:6px;box-shadow:0 0 8px #2ECC71;}
 
-  /* 탭 + 툴바 */
   .controls{
     max-width:1180px;margin:26px auto 0;padding:0 20px;
     display:flex;gap:14px;flex-wrap:wrap;align-items:center;
@@ -109,44 +72,29 @@
   .tab{
     flex:1;padding:13px 10px;cursor:pointer;
     background:var(--panel-2);color:var(--text-dim);border:none;
-    font-family:var(--mono);font-size:13px;letter-spacing:.14em;
-    text-transform:uppercase;
-    border-right:1px solid var(--line);
-    transition:all .15s;
+    font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    border-right:1px solid var(--line);transition:all .15s;
   }
   .tab:last-child{border-right:none;}
-  .tab small{display:block;font-family:var(--sans);font-size:12px;
-    letter-spacing:.2em;margin-top:3px;}
+  .tab small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.2em;margin-top:3px;}
   .tab.active-criminal{background:var(--red);color:#fff;}
   .tab.active-hero{background:var(--blue);color:#fff;}
   .tab:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
   .btn-post{
     padding:13px 26px;cursor:pointer;
-    background:transparent;color:var(--text);
-    border:1px solid var(--text-dim);
-    font-family:var(--mono);font-size:13px;letter-spacing:.14em;
-    transition:all .15s;
+    background:transparent;color:var(--text);border:1px solid var(--text-dim);
+    font-family:var(--mono);font-size:13px;letter-spacing:.14em;transition:all .15s;
   }
   .btn-post:hover{border-color:var(--gold);color:var(--gold);}
-  .btn-admin{
+  .btn-sub{
     padding:13px 18px;cursor:pointer;
-    background:transparent;color:var(--text-dim);
-    border:1px solid var(--line);
+    background:transparent;color:var(--text-dim);border:1px solid var(--line);
     font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+    text-decoration:none;display:flex;align-items:center;
   }
-  .btn-admin:hover{border-color:var(--gold);color:var(--gold);}
-  .btn-admin.on{border-color:var(--gold);color:var(--gold);}
+  .btn-sub:hover{border-color:var(--gold);color:var(--gold);}
+  .btn-sub.on{border-color:var(--gold);color:var(--gold);}
 
-  /* 삭제 버튼 */
-  .d-del{
-    background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.5);
-    color:#fff;cursor:pointer;
-    font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
-    padding:3px 8px;margin-left:10px;
-  }
-  .d-del:hover{background:#000;}
-
-  /* 검색 */
   .search-row{
     max-width:1180px;margin:14px auto 0;padding:0 20px;
     position:relative;z-index:1;display:flex;gap:0;
@@ -165,20 +113,15 @@
   .search-row input:focus{outline:none;border-color:var(--gold);}
   .search-row input::placeholder{color:#5c6a80;}
 
-  /* 카운트 라인 */
   .status-line{
     max-width:1180px;margin:14px auto 0;padding:0 20px;
     font-family:var(--mono);font-size:11px;color:var(--text-dim);
     letter-spacing:.1em;position:relative;z-index:1;
   }
 
-  /* 게시판 */
   #board{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-    gap:20px;
-    max-width:1180px;margin:18px auto 90px;padding:0 20px;
-    position:relative;z-index:1;
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;
+    max-width:1180px;margin:18px auto 90px;padding:0 20px;position:relative;z-index:1;
   }
   .empty,.loading{
     grid-column:1/-1;text-align:center;padding:80px 20px;
@@ -186,20 +129,16 @@
     color:var(--text-dim);line-height:2;
   }
 
-  /* 파일 카드 */
   .dossier{
-    background:var(--panel);
-    border:1px solid var(--line);
-    position:relative;overflow:hidden;
-    transition:transform .15s, border-color .15s;
+    background:var(--panel);border:1px solid var(--line);
+    position:relative;overflow:hidden;transition:transform .15s, border-color .15s;
   }
-  .dossier:hover{transform:translateY(-3px);}
+  .dossier:hover{transform:translateY(-2px);}
   .dossier.criminal:hover{border-color:var(--red);}
   .dossier.hero:hover{border-color:var(--blue);}
-  /* CLASSIFIED 워터마크 */
   .dossier::after{
     content:"CLASSIFIED";
-    position:absolute;top:46%;left:50%;
+    position:absolute;top:40%;left:50%;
     transform:translate(-50%,-50%) rotate(-24deg);
     font-family:var(--mono);font-weight:600;font-size:34px;
     letter-spacing:.3em;color:rgba(133,147,168,.07);
@@ -209,89 +148,104 @@
     display:flex;justify-content:space-between;align-items:center;
     padding:9px 14px;
     font-family:var(--mono);font-size:11px;letter-spacing:.18em;
-    text-transform:uppercase;color:#fff;
+    text-transform:uppercase;color:#fff;position:relative;z-index:1;
   }
   .criminal .d-head{background:linear-gradient(90deg,var(--red),var(--red-dark));}
   .hero .d-head{background:linear-gradient(90deg,var(--blue),#134A9E);}
-  .d-file-no{opacity:.85;}
+  .d-file-no{opacity:.85;display:flex;align-items:center;}
+  .d-del{
+    background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.5);
+    color:#fff;cursor:pointer;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+    padding:3px 8px;margin-left:10px;
+  }
+  .d-del:hover{background:#000;}
 
-  .d-body{padding:16px 16px 18px;}
+  .d-body{padding:16px 16px 14px;position:relative;z-index:1;}
   .d-top{display:flex;gap:14px;margin-bottom:14px;}
   .photo-frame{
     width:104px;height:124px;flex-shrink:0;
-    background:var(--panel-2);
-    border:1px solid var(--line);
+    background:var(--panel-2);border:1px solid var(--line);
     display:flex;align-items:center;justify-content:center;
     overflow:hidden;position:relative;
   }
   .photo-frame img{width:100%;height:100%;object-fit:cover;filter:grayscale(.85) contrast(1.08);}
-  /* 사진 코너 브래킷 */
-  .photo-frame::before,.photo-frame::after{
-    content:"";position:absolute;width:12px;height:12px;pointer-events:none;
-  }
+  .photo-frame::before,.photo-frame::after{content:"";position:absolute;width:12px;height:12px;pointer-events:none;}
   .photo-frame::before{top:3px;left:3px;border-top:2px solid var(--text-dim);border-left:2px solid var(--text-dim);}
   .photo-frame::after{bottom:3px;right:3px;border-bottom:2px solid var(--text-dim);border-right:2px solid var(--text-dim);}
   .no-photo{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--text-dim);}
   .d-id{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;}
-  .d-name{
-    font-weight:700;font-size:21px;line-height:1.25;
-    color:#fff;word-break:keep-all;margin-bottom:6px;
-  }
-  .d-tag{
-    align-self:flex-start;
-    font-family:var(--mono);font-size:10px;letter-spacing:.2em;
-    padding:4px 9px;border:1px solid;
-  }
+  .d-name{font-weight:700;font-size:21px;line-height:1.25;color:#fff;word-break:keep-all;margin-bottom:6px;}
+  .d-tag{align-self:flex-start;font-family:var(--mono);font-size:10px;letter-spacing:.2em;padding:4px 9px;border:1px solid;}
   .criminal .d-tag{color:var(--red);border-color:var(--red);}
   .hero .d-tag{color:var(--gold);border-color:var(--gold);}
 
   .d-fields{list-style:none;border-top:1px solid var(--line);}
-  .d-fields li{
-    display:flex;gap:12px;padding:8px 2px;
-    border-bottom:1px solid var(--line);
-    font-size:13.5px;
-  }
+  .d-fields li{display:flex;gap:12px;padding:8px 2px;border-bottom:1px solid var(--line);font-size:13.5px;}
   .d-fields .k{
     font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
-    color:var(--text-dim);min-width:58px;flex-shrink:0;
-    padding-top:3px;text-transform:uppercase;
+    color:var(--text-dim);min-width:58px;flex-shrink:0;padding-top:3px;text-transform:uppercase;
   }
   .d-fields .v{color:var(--text);word-break:break-word;white-space:pre-wrap;line-height:1.55;}
-  .d-date{
-    margin-top:10px;text-align:right;
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
-    color:var(--text-dim);
-  }
+  .d-date{margin-top:10px;text-align:right;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--text-dim);}
 
-  /* 모달 */
+  /* 댓글 */
+  .c-toggle{
+    width:100%;margin-top:12px;padding:9px;cursor:pointer;
+    background:var(--panel-2);border:1px solid var(--line);color:var(--text-dim);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  }
+  .c-toggle:hover{color:var(--gold);border-color:var(--gold);}
+  .c-box{margin-top:10px;border:1px solid var(--line);background:var(--panel-2);padding:10px;}
+  .c-list{list-style:none;max-height:220px;overflow-y:auto;}
+  .c-list li{padding:8px 4px;border-bottom:1px solid var(--line);font-size:13px;}
+  .c-list li:last-child{border-bottom:none;}
+  .c-meta{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:10px;color:var(--text-dim);
+    letter-spacing:.06em;margin-bottom:3px;
+  }
+  .c-del{
+    background:none;border:none;color:var(--red);cursor:pointer;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  }
+  .c-del:hover{text-decoration:underline;}
+  .c-text{color:var(--text);line-height:1.55;word-break:break-word;white-space:pre-wrap;}
+  .c-empty{padding:14px 4px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:.1em;}
+  .c-input-row{display:flex;gap:8px;margin-top:10px;}
+  .c-input-row input{
+    flex:1;padding:9px 11px;background:var(--bg);border:1px solid var(--line);
+    color:var(--text);font-family:var(--sans);font-size:13.5px;
+  }
+  .c-input-row input:focus{outline:none;border-color:var(--gold);}
+  .c-input-row button{
+    padding:9px 16px;cursor:pointer;background:#fff;color:var(--bg);border:1px solid #fff;
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;font-weight:600;
+  }
+  .c-login-note{margin-top:10px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:.08em;}
+
+  /* 모달 공통 */
   .overlay{
     position:fixed;inset:0;background:rgba(4,7,13,.82);
     display:none;align-items:flex-start;justify-content:center;
-    padding:36px 16px;overflow-y:auto;z-index:20;
-    backdrop-filter:blur(3px);
+    padding:36px 16px;overflow-y:auto;z-index:20;backdrop-filter:blur(3px);
   }
   .overlay.open{display:flex;}
   .modal{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-top:3px solid var(--red);
-    width:min(500px,100%);
-    padding:26px 26px 24px;
+    background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--red);
+    width:min(500px,100%);padding:26px 26px 24px;
   }
   .modal.hero-mode{border-top-color:var(--blue);}
-  .modal h2{
-    font-family:var(--mono);font-size:15px;letter-spacing:.25em;
-    text-transform:uppercase;color:#fff;
-  }
-  .m-sub{font-size:12px;color:var(--text-dim);margin:6px 0 20px;letter-spacing:.05em;}
+  .modal.gold-mode{border-top-color:var(--gold);}
+  .modal h2{font-family:var(--mono);font-size:15px;letter-spacing:.25em;text-transform:uppercase;color:#fff;}
+  .m-sub{font-size:12px;color:var(--text-dim);margin:6px 0 20px;letter-spacing:.05em;line-height:1.7;}
   .field{margin-bottom:15px;}
   .field label{
     display:block;font-family:var(--mono);font-size:11px;
-    letter-spacing:.18em;margin-bottom:6px;color:var(--text-dim);
-    text-transform:uppercase;
+    letter-spacing:.18em;margin-bottom:6px;color:var(--text-dim);text-transform:uppercase;
   }
   .field label .opt{color:#5c6a80;font-size:10px;}
-  .field input[type=text],.field input[type=date],.field textarea{
+  .field input[type=text],.field input[type=password],.field input[type=date],.field textarea{
     width:100%;padding:10px 12px;
     font-family:var(--sans);font-size:14.5px;color:var(--text);
     background:var(--panel-2);border:1px solid var(--line);
@@ -303,17 +257,14 @@
   .type-pick button{
     flex:1;padding:11px;cursor:pointer;
     font-family:var(--mono);font-size:12px;letter-spacing:.15em;
-    background:var(--panel-2);border:1px solid var(--line);color:var(--text-dim);
-    text-transform:uppercase;
+    background:var(--panel-2);border:1px solid var(--line);color:var(--text-dim);text-transform:uppercase;
   }
   .type-pick button.sel-criminal{background:var(--red);border-color:var(--red);color:#fff;}
   .type-pick button.sel-hero{background:var(--blue);border-color:var(--blue);color:#fff;}
+  .type-pick button.sel-gold{background:var(--gold);border-color:var(--gold);color:var(--bg);}
   .photo-input-row{display:flex;align-items:center;gap:12px;}
-  .photo-input-row input[type=file]{color:var(--text-dim);font-size:12px;font-family:var(--mono);}
-  .photo-preview{
-    width:70px;height:84px;border:1px solid var(--line);
-    object-fit:cover;display:none;filter:grayscale(.85);
-  }
+  .photo-input-row input[type=file]{color:var(--text-dim);font-size:12px;font-family:var(--mono);max-width:230px;}
+  .photo-preview{width:70px;height:84px;border:1px solid var(--line);object-fit:cover;display:none;filter:grayscale(.85);}
   .photo-preview.show{display:block;}
   .m-actions{display:flex;gap:12px;margin-top:22px;}
   .m-actions button{
@@ -325,30 +276,23 @@
   .btn-submit:disabled{opacity:.5;cursor:wait;}
   .btn-cancel{background:transparent;color:var(--text-dim);}
   .btn-cancel:hover{color:var(--text);}
-  .form-msg{margin-top:12px;text-align:center;font-size:12.5px;color:var(--red);min-height:18px;
-    font-family:var(--mono);letter-spacing:.05em;}
+  .form-msg{margin-top:12px;text-align:center;font-size:12.5px;color:var(--red);min-height:18px;font-family:var(--mono);letter-spacing:.05em;line-height:1.7;}
+  .form-msg.ok{color:#2ECC71;}
 
   #setupNotice{
     max-width:640px;margin:60px auto;padding:28px;
     border:1px dashed var(--red);background:rgba(200,16,46,.06);
-    font-size:14px;line-height:1.9;display:none;
-    position:relative;z-index:1;
+    font-size:14px;line-height:1.9;display:none;position:relative;z-index:1;
   }
   #setupNotice h2{font-family:var(--mono);font-size:14px;letter-spacing:.2em;margin-bottom:10px;color:#fff;}
-  #setupNotice code{background:var(--panel-2);padding:2px 7px;border:1px solid var(--line);
-    font-family:var(--mono);font-size:12px;}
+  #setupNotice code{background:var(--panel-2);padding:2px 7px;border:1px solid var(--line);font-family:var(--mono);font-size:12px;}
 
   footer{
-    border-top:1px solid var(--line);
-    padding:22px 16px 34px;text-align:center;
+    border-top:1px solid var(--line);padding:22px 16px 34px;text-align:center;
     font-family:var(--mono);font-size:10.5px;letter-spacing:.25em;
-    color:var(--text-dim);text-transform:uppercase;
-    position:relative;z-index:1;
+    color:var(--text-dim);text-transform:uppercase;position:relative;z-index:1;
   }
-  @media (max-width:520px){
-    .hd-meta{display:none;}
-    .d-top{flex-direction:row;}
-  }
+  @media (max-width:520px){.hd-meta{display:none;}}
   @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
 </style>
 </head>
@@ -366,7 +310,7 @@
     </div>
     <div class="hd-meta">
       <div><span class="dot"></span>SYSTEM ONLINE</div>
-      <div>CLEARANCE: <b>LEVEL 4</b></div>
+      <div id="agentLine">AGENT: <b>GUEST</b></div>
       <div id="todayStr"></div>
     </div>
   </div>
@@ -382,13 +326,13 @@
     </button>
   </div>
   <button class="btn-post" onclick="openModal()">+ NEW ENTRY / 신규 기록</button>
-  <a class="btn-admin" href="https://lyerin0.github.io/ragim/" target="_blank" rel="noopener" style="text-decoration:none;display:flex;align-items:center;">로블록스 유저 찾기 ↗</a>
-  <button class="btn-admin" id="btnAdmin" onclick="adminButton()">ADMIN</button>
+  <a class="btn-sub" href="https://lyerin0.github.io/ragim/" target="_blank" rel="noopener">로블록스 유저 찾기 ↗</a>
+  <button class="btn-sub" id="btnAccount" onclick="accountButton()">LOGIN / 회원가입</button>
 </div>
 
 <div class="search-row">
   <span class="search-label">SEARCH //</span>
-  <input type="text" id="searchInput" placeholder="이름 · 게임 · 사유 · 결과로 기록 조회..." autocomplete="off">
+  <input type="text" id="searchInput" placeholder="이름 · 게임 · 사유 · 결과 · 작성자로 기록 조회..." autocomplete="off">
 </div>
 
 <div class="status-line" id="statusLine">LOADING RECORDS...</div>
@@ -402,11 +346,11 @@
   <div class="loading">ACCESSING SECURE DATABASE...</div>
 </main>
 
-<!-- 등록 모달 -->
+<!-- 게시글 등록 모달 -->
 <div class="overlay" id="overlay">
   <div class="modal" id="modalBox" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <h2 id="modalTitle">New Record Entry</h2>
-    <div class="m-sub">등록된 기록은 즉시 데이터베이스에 저장되어 모든 요원에게 공개됩니다.</div>
+    <div class="m-sub">등록된 기록은 즉시 데이터베이스에 저장되어 모두에게 공개됩니다.<br>작성자 계정 이메일이 게시글에 표시됩니다.</div>
 
     <div class="field">
       <label>Classification / 구분</label>
@@ -417,16 +361,11 @@
     </div>
 
     <div class="field">
-      <label>Photo / 사진 <span class="opt">(선택 — 파일 선택 또는 Ctrl+V 붙여넣기)</span></label>
+      <label>Photo / 사진 <span class="opt">(선택 — 파일 선택 또는 이미지 복사 후 Ctrl+V)</span></label>
       <div class="photo-input-row">
         <input type="file" id="inPhoto" accept="image/*">
         <img class="photo-preview" id="photoPreview" alt="사진 미리보기">
       </div>
-    </div>
-
-    <div class="field">
-      <label>Author Email / 작성자 이메일</label>
-      <input type="text" id="inAuthorEmail" maxlength="60" placeholder="본인 이메일 (게시글에 표시됩니다)">
     </div>
 
     <div class="field">
@@ -462,24 +401,34 @@
   </div>
 </div>
 
-<!-- 관리자 로그인 모달 -->
-<div class="overlay" id="adminOverlay">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
-    <h2 id="adminTitle">Admin Authentication</h2>
-    <div class="m-sub">관리자 계정으로 로그인하면 게시글 삭제 권한이 부여됩니다.</div>
+<!-- 로그인/회원가입 모달 -->
+<div class="overlay" id="authOverlay">
+  <div class="modal gold-mode" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <h2 id="authTitle">Agent Authentication</h2>
+    <div class="m-sub">글 작성 · 댓글 · 본인 글 삭제는 인증된 요원만 가능합니다.<br>가입 시 이메일로 인증 메일이 발송됩니다.</div>
+
+    <div class="field">
+      <label>Mode / 모드</label>
+      <div class="type-pick">
+        <button type="button" id="modeLogin" class="sel-gold" onclick="setAuthMode('login')">로그인</button>
+        <button type="button" id="modeSignup" onclick="setAuthMode('signup')">회원가입</button>
+      </div>
+    </div>
+
     <div class="field">
       <label>Email / 이메일</label>
-      <input type="text" id="admEmail" autocomplete="username" placeholder="admin@example.com">
+      <input type="text" id="authEmail" autocomplete="username" placeholder="you@example.com">
     </div>
     <div class="field">
-      <label>Password / 비밀번호</label>
-      <input type="password" id="admPw" autocomplete="current-password">
+      <label>Password / 비밀번호 <span class="opt">(6자 이상)</span></label>
+      <input type="password" id="authPw" autocomplete="current-password">
     </div>
+
     <div class="m-actions">
-      <button class="btn-cancel" type="button" onclick="closeAdminModal()">Cancel</button>
-      <button class="btn-submit" type="button" id="btnLogin" onclick="adminLogin()">Sign In</button>
+      <button class="btn-cancel" type="button" onclick="closeAuthModal()">Cancel</button>
+      <button class="btn-submit" type="button" id="btnAuth" onclick="authSubmit()">Sign In</button>
     </div>
-    <div class="form-msg" id="admMsg"></div>
+    <div class="form-msg" id="authMsg"></div>
   </div>
 </div>
 
@@ -492,7 +441,8 @@
     onSnapshot, serverTimestamp
   } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
   import {
-    getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
+    getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+    signOut, onAuthStateChanged, sendEmailVerification
   } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
   const firebaseConfig = {
@@ -505,9 +455,12 @@
     measurementId: "G-NCQ86BB0Y8"
   };
 
+  /* ★ 관리자 이메일 — Firebase Authentication에 만든 관리자 계정 이메일로 바꾸세요 */
+  const ADMIN_EMAIL = "여기에_관리자_이메일";
+
   const configured = !String(firebaseConfig.apiKey).includes("여기에");
-  let db = null;
-  let auth = null;
+  let db = null, auth = null;
+  let currentUser = null;
   let isAdmin = false;
 
   let currentTab = "criminal";
@@ -516,6 +469,8 @@
   let unsubscribe = null;
   let records = [];
   let searchTerm = "";
+  let authMode = "login";
+  const commentUnsubs = {};
 
   const board = document.getElementById("board");
   const statusLine = document.getElementById("statusLine");
@@ -530,10 +485,20 @@
     db = getFirestore(app);
     auth = getAuth(app);
     onAuthStateChanged(auth, user => {
-      isAdmin = !!user;
-      const btn = document.getElementById("btnAdmin");
-      btn.textContent = isAdmin ? "ADMIN ● LOGOUT" : "ADMIN";
-      btn.className = "btn-admin" + (isAdmin ? " on" : "");
+      currentUser = user;
+      isAdmin = !!user && user.email === ADMIN_EMAIL && !ADMIN_EMAIL.includes("여기에");
+      const btn = document.getElementById("btnAccount");
+      const agent = document.getElementById("agentLine");
+      if (user) {
+        const verified = user.emailVerified;
+        btn.textContent = (isAdmin ? "★ " : "") + user.email + " · LOGOUT";
+        btn.className = "btn-sub on";
+        agent.innerHTML = "AGENT: <b>" + escText(user.email) + (verified ? "" : " (미인증)") + "</b>";
+      } else {
+        btn.textContent = "LOGIN / 회원가입";
+        btn.className = "btn-sub";
+        agent.innerHTML = "AGENT: <b>GUEST</b>";
+      }
       renderList();
     });
     listen(currentTab);
@@ -543,35 +508,34 @@
     statusLine.textContent = "OFFLINE — CONFIG MISSING";
   }
 
+  /* ---------- 탭 ---------- */
   window.switchTab = function(type){
     currentTab = type;
-    document.getElementById("tabCriminal").className =
-      "tab" + (type === "criminal" ? " active-criminal" : "");
-    document.getElementById("tabHero").className =
-      "tab" + (type === "hero" ? " active-hero" : "");
+    document.getElementById("tabCriminal").className = "tab" + (type === "criminal" ? " active-criminal" : "");
+    document.getElementById("tabHero").className = "tab" + (type === "hero" ? " active-hero" : "");
     if (configured) listen(type);
   };
 
   function listen(type){
     if (unsubscribe) unsubscribe();
+    clearCommentSubs();
     board.innerHTML = '<div class="loading">ACCESSING SECURE DATABASE...</div>';
-    const q = query(
-      collection(db, "posts"),
-      where("type", "==", type),
-      orderBy("createdAt", "desc")
-    );
+    const q = query(collection(db, "posts"), where("type", "==", type), orderBy("createdAt", "desc"));
     unsubscribe = onSnapshot(q, snap => {
       records = [];
-      snap.forEach(doc => records.push({ id: doc.id, data: doc.data() }));
+      snap.forEach(d => records.push({ id: d.id, data: d.data() }));
       renderList();
     }, err => {
       console.error(err);
-      board.innerHTML = '<div class="empty">DATABASE ACCESS ERROR<br>Firestore 설정과 색인(index)을 확인하세요.<br><small style="letter-spacing:0">' + err.message + '</small></div>';
+      board.innerHTML = '<div class="empty">DATABASE ACCESS ERROR<br>Firestore 설정과 색인(index)을 확인하세요.<br><small style="letter-spacing:0">' + escText(err.message) + '</small></div>';
       statusLine.textContent = "ERROR — SEE CONSOLE (F12)";
     });
   }
 
+  /* ---------- 목록 + 검색 ---------- */
   function renderList(){
+    if (!configured) return;
+    clearCommentSubs();
     const term = searchTerm.trim().toLowerCase();
     const list = term
       ? records.filter(r => {
@@ -597,31 +561,34 @@
     list.forEach(r => board.appendChild(renderDossier(r.data, r.id)));
   }
 
-  function escText(s){
-    return String(s ?? "").replace(/[&<>"']/g, c =>
-      ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  }
-
   document.getElementById("searchInput").addEventListener("input", e => {
     searchTerm = e.target.value;
     renderList();
   });
 
-  function esc(s){
+  function escText(s){
     return String(s ?? "").replace(/[&<>"']/g, c =>
       ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
+  function safeId(id){ return String(id).replace(/[^A-Za-z0-9_-]/g,""); }
 
+  /* ---------- 카드 ---------- */
   function renderDossier(p, id){
+    const sid = safeId(id);
     const el = document.createElement("article");
     el.className = "dossier " + p.type;
 
     const headText = p.type === "criminal" ? "RED NOTICE" : "HONOR ROLL";
     const tagText = p.type === "criminal" ? "WANTED · 지명수배" : "VERIFIED · 공인영웅";
-    const fileNo = "FILE #" + String(id).slice(0, 8).toUpperCase();
+    const fileNo = "FILE #" + sid.slice(0, 8).toUpperCase();
+
+    const canDelete = isAdmin || (currentUser && p.authorUid === currentUser.uid);
+    const delBtn = canDelete
+      ? '<button class="d-del" onclick="deletePost(\'' + sid + '\')">DELETE</button>'
+      : '';
 
     const photoHtml = p.photo
-      ? '<img src="' + p.photo + '" alt="' + esc(p.name) + '">'
+      ? '<img src="' + p.photo + '" alt="' + escText(p.name) + '">'
       : '<span class="no-photo">NO PHOTO</span>';
 
     let dateStr = "";
@@ -631,19 +598,11 @@
     }
 
     let fields =
-      '<li><span class="k">게임</span><span class="v">' + esc(p.game) + '</span></li>' +
-      '<li><span class="k">사유</span><span class="v">' + esc(p.reason) + '</span></li>' +
-      '<li><span class="k">결과</span><span class="v">' + esc(p.result) + '</span></li>';
-    if (p.birthday) {
-      fields += '<li><span class="k">생일</span><span class="v">' + esc(p.birthday) + '</span></li>';
-    }
-    if (p.authorEmail) {
-      fields += '<li><span class="k">작성자</span><span class="v">' + esc(p.authorEmail) + '</span></li>';
-    }
-
-    const delBtn = isAdmin
-      ? '<button class="d-del" onclick="deletePost(\'' + String(id).replace(/[^A-Za-z0-9_-]/g,"") + '\')">DELETE</button>'
-      : '';
+      '<li><span class="k">게임</span><span class="v">' + escText(p.game) + '</span></li>' +
+      '<li><span class="k">사유</span><span class="v">' + escText(p.reason) + '</span></li>' +
+      '<li><span class="k">결과</span><span class="v">' + escText(p.result) + '</span></li>';
+    if (p.birthday) fields += '<li><span class="k">생일</span><span class="v">' + escText(p.birthday) + '</span></li>';
+    if (p.authorEmail) fields += '<li><span class="k">작성자</span><span class="v">' + escText(p.authorEmail) + '</span></li>';
 
     el.innerHTML =
       '<div class="d-head"><span>' + headText + '</span><span class="d-file-no">' + fileNo + delBtn + '</span></div>' +
@@ -651,67 +610,198 @@
         '<div class="d-top">' +
           '<div class="photo-frame">' + photoHtml + '</div>' +
           '<div class="d-id">' +
-            '<div class="d-name">' + esc(p.name) + '</div>' +
+            '<div class="d-name">' + escText(p.name) + '</div>' +
             '<span class="d-tag">' + tagText + '</span>' +
           '</div>' +
         '</div>' +
         '<ul class="d-fields">' + fields + '</ul>' +
         (dateStr ? '<div class="d-date">REGISTERED ' + dateStr + '</div>' : '') +
+        '<button class="c-toggle" onclick="toggleComments(\'' + sid + '\')">▾ COMMENTS / 댓글</button>' +
+        '<div class="c-box" id="cbox-' + sid + '" hidden>' +
+          '<ul class="c-list" id="clist-' + sid + '"><li class="c-empty">LOADING...</li></ul>' +
+          (currentUser
+            ? '<div class="c-input-row">' +
+                '<input type="text" id="cin-' + sid + '" maxlength="300" placeholder="댓글 작성...">' +
+                '<button onclick="addComment(\'' + sid + '\')">POST</button>' +
+              '</div>'
+            : '<div class="c-login-note">로그인 후 댓글을 작성할 수 있습니다</div>') +
+        '</div>' +
       '</div>';
     return el;
   }
 
-  /* ---------- 관리자 ---------- */
-  window.adminButton = function(){
-    if (!configured) return;
-    if (isAdmin) {
-      if (confirm("관리자 로그아웃 하시겠습니까?")) signOut(auth);
+  /* ---------- 댓글 ---------- */
+  function clearCommentSubs(){
+    Object.values(commentUnsubs).forEach(u => u());
+    for (const k in commentUnsubs) delete commentUnsubs[k];
+  }
+
+  window.toggleComments = function(sid){
+    const box = document.getElementById("cbox-" + sid);
+    if (!box) return;
+    if (box.hidden) {
+      box.hidden = false;
+      if (!commentUnsubs[sid]) {
+        const q = query(collection(db, "posts", sid, "comments"), orderBy("createdAt", "asc"));
+        commentUnsubs[sid] = onSnapshot(q, snap => renderComments(sid, snap), err => {
+          const ul = document.getElementById("clist-" + sid);
+          if (ul) ul.innerHTML = '<li class="c-empty">댓글 로드 실패</li>';
+          console.error(err);
+        });
+      }
     } else {
-      document.getElementById("adminOverlay").classList.add("open");
+      box.hidden = true;
+      if (commentUnsubs[sid]) { commentUnsubs[sid](); delete commentUnsubs[sid]; }
     }
   };
-  window.closeAdminModal = function(){
-    document.getElementById("adminOverlay").classList.remove("open");
-    document.getElementById("admEmail").value = "";
-    document.getElementById("admPw").value = "";
-    document.getElementById("admMsg").textContent = "";
+
+  function renderComments(sid, snap){
+    const ul = document.getElementById("clist-" + sid);
+    if (!ul) return;
+    if (snap.empty) {
+      ul.innerHTML = '<li class="c-empty">NO COMMENTS — 첫 댓글을 남겨보세요</li>';
+      return;
+    }
+    ul.innerHTML = "";
+    snap.forEach(cd => {
+      const c = cd.data();
+      const canDel = isAdmin || (currentUser && c.authorUid === currentUser.uid);
+      let dstr = "";
+      if (c.createdAt && c.createdAt.toDate) {
+        const d = c.createdAt.toDate();
+        dstr = String(d.getMonth()+1).padStart(2,"0") + "." + String(d.getDate()).padStart(2,"0") +
+          " " + String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0");
+      }
+      const li = document.createElement("li");
+      li.innerHTML =
+        '<div class="c-meta"><span>' + escText(c.authorEmail || "unknown") + (dstr ? " · " + dstr : "") + '</span>' +
+        (canDel ? '<button class="c-del" onclick="deleteComment(\'' + sid + '\',\'' + safeId(cd.id) + '\')">DEL</button>' : '') +
+        '</div>' +
+        '<div class="c-text">' + escText(c.text) + '</div>';
+      ul.appendChild(li);
+    });
+    ul.scrollTop = ul.scrollHeight;
+  }
+
+  window.addComment = async function(sid){
+    if (!requireVerifiedLogin()) return;
+    const input = document.getElementById("cin-" + sid);
+    const text = input.value.trim();
+    if (!text) return;
+    try {
+      await addDoc(collection(db, "posts", sid, "comments"), {
+        text,
+        authorEmail: currentUser.email,
+        authorUid: currentUser.uid,
+        createdAt: serverTimestamp()
+      });
+      input.value = "";
+    } catch (err) {
+      alert("댓글 등록 실패: " + err.message);
+    }
   };
-  document.getElementById("adminOverlay").addEventListener("click", e => {
-    if (e.target.id === "adminOverlay") window.closeAdminModal();
+
+  window.deleteComment = async function(sid, cid){
+    if (!confirm("이 댓글을 삭제하시겠습니까?")) return;
+    try {
+      await deleteDoc(doc(db, "posts", sid, "comments", cid));
+    } catch (err) {
+      alert("삭제 실패: " + err.message);
+    }
+  };
+
+  /* ---------- 계정 ---------- */
+  window.accountButton = function(){
+    if (!configured) return;
+    if (currentUser) {
+      if (confirm("로그아웃 하시겠습니까?")) signOut(auth);
+    } else {
+      document.getElementById("authOverlay").classList.add("open");
+    }
+  };
+  window.closeAuthModal = function(){
+    document.getElementById("authOverlay").classList.remove("open");
+    document.getElementById("authEmail").value = "";
+    document.getElementById("authPw").value = "";
+    document.getElementById("authMsg").textContent = "";
+    document.getElementById("authMsg").className = "form-msg";
+  };
+  document.getElementById("authOverlay").addEventListener("click", e => {
+    if (e.target.id === "authOverlay") window.closeAuthModal();
   });
-  document.getElementById("admPw").addEventListener("keydown", e => {
-    if (e.key === "Enter") window.adminLogin();
+  document.getElementById("authPw").addEventListener("keydown", e => {
+    if (e.key === "Enter") window.authSubmit();
   });
 
-  window.adminLogin = async function(){
-    const email = document.getElementById("admEmail").value.trim();
-    const pw = document.getElementById("admPw").value;
-    const msg = document.getElementById("admMsg");
+  window.setAuthMode = function(mode){
+    authMode = mode;
+    document.getElementById("modeLogin").className = mode === "login" ? "sel-gold" : "";
+    document.getElementById("modeSignup").className = mode === "signup" ? "sel-gold" : "";
+    document.getElementById("btnAuth").textContent = mode === "login" ? "Sign In" : "Sign Up";
+  };
+
+  window.authSubmit = async function(){
+    const email = document.getElementById("authEmail").value.trim();
+    const pw = document.getElementById("authPw").value;
+    const msg = document.getElementById("authMsg");
+    msg.className = "form-msg";
     if (!email || !pw) { msg.textContent = "이메일과 비밀번호를 입력하세요."; return; }
-    const btn = document.getElementById("btnLogin");
+    const btn = document.getElementById("btnAuth");
     btn.disabled = true;
     try {
-      await signInWithEmailAndPassword(auth, email, pw);
-      window.closeAdminModal();
+      if (authMode === "signup") {
+        const cred = await createUserWithEmailAndPassword(auth, email, pw);
+        await sendEmailVerification(cred.user);
+        await signOut(auth);
+        msg.className = "form-msg ok";
+        msg.textContent = "인증 메일을 보냈습니다. 메일함에서 인증 링크를 클릭한 뒤 로그인하세요. (스팸함도 확인)";
+        setAuthMode("login");
+      } else {
+        await signInWithEmailAndPassword(auth, email, pw);
+        window.closeAuthModal();
+      }
     } catch (err) {
-      msg.textContent = "ACCESS DENIED: 이메일 또는 비밀번호가 올바르지 않습니다.";
+      const code = err.code || "";
+      if (code.includes("email-already-in-use")) msg.textContent = "이미 가입된 이메일입니다. 로그인하세요.";
+      else if (code.includes("invalid-email")) msg.textContent = "올바른 이메일 형식이 아닙니다.";
+      else if (code.includes("weak-password")) msg.textContent = "비밀번호는 6자 이상이어야 합니다.";
+      else if (code.includes("invalid-credential") || code.includes("wrong-password") || code.includes("user-not-found"))
+        msg.textContent = "ACCESS DENIED: 이메일 또는 비밀번호가 올바르지 않습니다.";
+      else msg.textContent = "오류: " + err.message;
     } finally {
       btn.disabled = false;
     }
   };
 
+  function requireVerifiedLogin(){
+    if (!currentUser) {
+      document.getElementById("authOverlay").classList.add("open");
+      return false;
+    }
+    if (!currentUser.emailVerified) {
+      if (confirm("이메일 인증이 완료되지 않았습니다.\n인증 메일을 다시 보낼까요? (메일의 링크 클릭 후 새로고침)")) {
+        sendEmailVerification(currentUser).then(() => alert("인증 메일을 다시 보냈습니다."))
+          .catch(e => alert("메일 발송 실패: " + e.message));
+      }
+      return false;
+    }
+    return true;
+  }
+
+  /* ---------- 게시글 삭제 ---------- */
   window.deletePost = async function(id){
-    if (!isAdmin) return;
     if (!confirm("이 기록을 영구 삭제하시겠습니까?")) return;
     try {
       await deleteDoc(doc(db, "posts", id));
     } catch (err) {
-      alert("삭제 실패: " + err.message + "\nFirestore 규칙에서 delete 권한을 확인하세요.");
+      alert("삭제 실패: " + err.message + "\n본인 글이 아니거나 권한이 없습니다.");
     }
   };
 
+  /* ---------- 등록 모달 ---------- */
   window.openModal = function(){
     if (!configured) { alert("먼저 Firebase 설정을 완료해 주세요."); return; }
+    if (!requireVerifiedLogin()) return;
     pickType(currentTab);
     document.getElementById("overlay").classList.add("open");
   };
@@ -730,6 +820,7 @@
     document.getElementById("modalBox").className = "modal" + (type === "hero" ? " hero-mode" : "");
   };
 
+  /* ---------- 사진 ---------- */
   function processImageFile(file){
     if (!file || !file.type.startsWith("image/")) return;
     const reader = new FileReader();
@@ -744,9 +835,7 @@
         canvas.width = w; canvas.height = h;
         canvas.getContext("2d").drawImage(img, 0, 0, w, h);
         photoData = canvas.toDataURL("image/jpeg", 0.72);
-        if (photoData.length > 900000) {
-          photoData = canvas.toDataURL("image/jpeg", 0.5);
-        }
+        if (photoData.length > 900000) photoData = canvas.toDataURL("image/jpeg", 0.5);
         const pv = document.getElementById("photoPreview");
         pv.src = photoData;
         pv.classList.add("show");
@@ -762,7 +851,6 @@
     processImageFile(file);
   });
 
-  /* 등록 모달이 열려 있을 때 Ctrl+V로 이미지 붙여넣기 */
   document.addEventListener("paste", e => {
     if (!document.getElementById("overlay").classList.contains("open")) return;
     const items = e.clipboardData && e.clipboardData.items;
@@ -776,21 +864,18 @@
     }
   });
 
+  /* ---------- 게시글 등록 ---------- */
   window.submitPost = async function(){
+    if (!requireVerifiedLogin()) return;
     const name = document.getElementById("inName").value.trim();
-    const authorEmail = document.getElementById("inAuthorEmail").value.trim();
     const game = document.getElementById("inGame").value.trim();
     const reason = document.getElementById("inReason").value.trim();
     const result = document.getElementById("inResult").value.trim();
     const birthday = document.getElementById("inBirthday").value;
     const msg = document.getElementById("formMsg");
 
-    if (!name || !game || !reason || !result || !authorEmail) {
-      msg.textContent = "ERROR: 이름 · 작성자 이메일 · 게임 · 사유 · 결과는 필수 항목입니다.";
-      return;
-    }
-    if (!authorEmail.includes("@") || !authorEmail.includes(".")) {
-      msg.textContent = "ERROR: 올바른 이메일 형식이 아닙니다.";
+    if (!name || !game || !reason || !result) {
+      msg.textContent = "ERROR: 이름 · 게임 · 사유 · 결과는 필수 항목입니다.";
       return;
     }
     const btn = document.getElementById("btnSubmit");
@@ -801,9 +886,10 @@
       await addDoc(collection(db, "posts"), {
         type: postType,
         name, game, reason, result,
-        authorEmail,
         birthday: birthday || null,
         photo: photoData || null,
+        authorEmail: currentUser.email,
+        authorUid: currentUser.uid,
         createdAt: serverTimestamp()
       });
       window.closeModal();
@@ -817,7 +903,7 @@
   };
 
   function resetForm(){
-    ["inName","inAuthorEmail","inGame","inReason","inResult","inBirthday","inPhoto"]
+    ["inName","inGame","inReason","inResult","inBirthday","inPhoto"]
       .forEach(id => document.getElementById(id).value = "");
     photoData = null;
     const pv = document.getElementById("photoPreview");
