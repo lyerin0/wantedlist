@@ -382,6 +382,7 @@
     </button>
   </div>
   <button class="btn-post" onclick="openModal()">+ NEW ENTRY / 신규 기록</button>
+  <a class="btn-admin" href="https://lyerin0.github.io/ragim/" target="_blank" rel="noopener" style="text-decoration:none;display:flex;align-items:center;">로블록스 유저 찾기 ↗</a>
   <button class="btn-admin" id="btnAdmin" onclick="adminButton()">ADMIN</button>
 </div>
 
@@ -416,11 +417,16 @@
     </div>
 
     <div class="field">
-      <label>Photo / 사진 <span class="opt">(선택)</span></label>
+      <label>Photo / 사진 <span class="opt">(선택 — 파일 선택 또는 Ctrl+V 붙여넣기)</span></label>
       <div class="photo-input-row">
         <input type="file" id="inPhoto" accept="image/*">
         <img class="photo-preview" id="photoPreview" alt="사진 미리보기">
       </div>
+    </div>
+
+    <div class="field">
+      <label>Author Email / 작성자 이메일</label>
+      <input type="text" id="inAuthorEmail" maxlength="60" placeholder="본인 이메일 (게시글에 표시됩니다)">
     </div>
 
     <div class="field">
@@ -570,7 +576,7 @@
     const list = term
       ? records.filter(r => {
           const p = r.data;
-          return [p.name, p.game, p.reason, p.result, p.birthday]
+          return [p.name, p.game, p.reason, p.result, p.birthday, p.authorEmail]
             .some(v => String(v || "").toLowerCase().includes(term));
         })
       : records;
@@ -630,6 +636,9 @@
       '<li><span class="k">결과</span><span class="v">' + esc(p.result) + '</span></li>';
     if (p.birthday) {
       fields += '<li><span class="k">생일</span><span class="v">' + esc(p.birthday) + '</span></li>';
+    }
+    if (p.authorEmail) {
+      fields += '<li><span class="k">작성자</span><span class="v">' + esc(p.authorEmail) + '</span></li>';
     }
 
     const delBtn = isAdmin
@@ -721,9 +730,8 @@
     document.getElementById("modalBox").className = "modal" + (type === "hero" ? " hero-mode" : "");
   };
 
-  document.getElementById("inPhoto").addEventListener("change", e => {
-    const file = e.target.files[0];
-    if (!file) { photoData = null; return; }
+  function processImageFile(file){
+    if (!file || !file.type.startsWith("image/")) return;
     const reader = new FileReader();
     reader.onload = ev => {
       const img = new Image();
@@ -746,18 +754,43 @@
       img.src = ev.target.result;
     };
     reader.readAsDataURL(file);
+  }
+
+  document.getElementById("inPhoto").addEventListener("change", e => {
+    const file = e.target.files[0];
+    if (!file) { photoData = null; return; }
+    processImageFile(file);
+  });
+
+  /* 등록 모달이 열려 있을 때 Ctrl+V로 이미지 붙여넣기 */
+  document.addEventListener("paste", e => {
+    if (!document.getElementById("overlay").classList.contains("open")) return;
+    const items = e.clipboardData && e.clipboardData.items;
+    if (!items) return;
+    for (const item of items) {
+      if (item.type.startsWith("image/")) {
+        e.preventDefault();
+        processImageFile(item.getAsFile());
+        break;
+      }
+    }
   });
 
   window.submitPost = async function(){
     const name = document.getElementById("inName").value.trim();
+    const authorEmail = document.getElementById("inAuthorEmail").value.trim();
     const game = document.getElementById("inGame").value.trim();
     const reason = document.getElementById("inReason").value.trim();
     const result = document.getElementById("inResult").value.trim();
     const birthday = document.getElementById("inBirthday").value;
     const msg = document.getElementById("formMsg");
 
-    if (!name || !game || !reason || !result) {
-      msg.textContent = "ERROR: 이름 · 게임 · 사유 · 결과는 필수 항목입니다.";
+    if (!name || !game || !reason || !result || !authorEmail) {
+      msg.textContent = "ERROR: 이름 · 작성자 이메일 · 게임 · 사유 · 결과는 필수 항목입니다.";
+      return;
+    }
+    if (!authorEmail.includes("@") || !authorEmail.includes(".")) {
+      msg.textContent = "ERROR: 올바른 이메일 형식이 아닙니다.";
       return;
     }
     const btn = document.getElementById("btnSubmit");
@@ -768,6 +801,7 @@
       await addDoc(collection(db, "posts"), {
         type: postType,
         name, game, reason, result,
+        authorEmail,
         birthday: birthday || null,
         photo: photoData || null,
         createdAt: serverTimestamp()
@@ -783,7 +817,7 @@
   };
 
   function resetForm(){
-    ["inName","inGame","inReason","inResult","inBirthday","inPhoto"]
+    ["inName","inAuthorEmail","inGame","inReason","inResult","inBirthday","inPhoto"]
       .forEach(id => document.getElementById(id).value = "");
     photoData = null;
     const pv = document.getElementById("photoPreview");
