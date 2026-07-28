@@ -437,7 +437,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import {
-    getFirestore, collection, addDoc, deleteDoc, doc, query, where, orderBy,
+    getFirestore, collection, addDoc, deleteDoc, updateDoc, doc, query, where, orderBy,
     onSnapshot, serverTimestamp
   } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
   import {
@@ -471,6 +471,7 @@
   let postType = "criminal";
   let photoData = null;
   let unsubscribe = null;
+  let editingId = null;
   let records = [];
   let searchTerm = "";
   let authMode = "login";
@@ -587,6 +588,9 @@
     const fileNo = "FILE #" + sid.slice(0, 8).toUpperCase();
 
     const canDelete = isAdmin || (currentUser && p.authorUid === currentUser.uid);
+    const editBtn = isAdmin
+      ? '<button class="d-del" onclick="editPost(\'' + sid + '\')">EDIT</button>'
+      : '';
     const delBtn = canDelete
       ? '<button class="d-del" onclick="deletePost(\'' + sid + '\')">DELETE</button>'
       : '';
@@ -609,7 +613,7 @@
     if (p.authorEmail) fields += '<li><span class="k">작성자</span><span class="v">' + escText(p.authorEmail) + '</span></li>';
 
     el.innerHTML =
-      '<div class="d-head"><span>' + headText + '</span><span class="d-file-no">' + fileNo + delBtn + '</span></div>' +
+      '<div class="d-head"><span>' + headText + '</span><span class="d-file-no">' + fileNo + editBtn + delBtn + '</span></div>' +
       '<div class="d-body">' +
         '<div class="d-top">' +
           '<div class="photo-frame">' + photoHtml + '</div>' +
@@ -792,6 +796,28 @@
     return true;
   }
 
+  /* ---------- 게시글 수정 (관리자 전용) ---------- */
+  window.editPost = function(sid){
+    if (!isAdmin) return;
+    const rec = records.find(r => safeId(r.id) === sid);
+    if (!rec) return;
+    const p = rec.data;
+    editingId = rec.id;
+    pickType(p.type);
+    document.getElementById("inName").value = p.name || "";
+    document.getElementById("inGame").value = p.game || "";
+    document.getElementById("inReason").value = p.reason || "";
+    document.getElementById("inResult").value = p.result || "";
+    document.getElementById("inBirthday").value = p.birthday || "";
+    photoData = p.photo || null;
+    const pv = document.getElementById("photoPreview");
+    if (photoData) { pv.src = photoData; pv.classList.add("show"); }
+    else { pv.classList.remove("show"); pv.src = ""; }
+    document.getElementById("modalTitle").textContent = "Edit Record (Admin)";
+    document.getElementById("btnSubmit").textContent = "Update Record";
+    document.getElementById("overlay").classList.add("open");
+  };
+
   /* ---------- 게시글 삭제 ---------- */
   window.deletePost = async function(id){
     if (!confirm("이 기록을 영구 삭제하시겠습니까?")) return;
@@ -887,15 +913,24 @@
     msg.textContent = "";
 
     try {
-      await addDoc(collection(db, "posts"), {
-        type: postType,
-        name, game, reason, result,
-        birthday: birthday || null,
-        photo: photoData || null,
-        authorEmail: currentUser.email,
-        authorUid: currentUser.uid,
-        createdAt: serverTimestamp()
-      });
+      if (editingId) {
+        await updateDoc(doc(db, "posts", editingId), {
+          type: postType,
+          name, game, reason, result,
+          birthday: birthday || null,
+          photo: photoData || null
+        });
+      } else {
+        await addDoc(collection(db, "posts"), {
+          type: postType,
+          name, game, reason, result,
+          birthday: birthday || null,
+          photo: photoData || null,
+          authorEmail: currentUser.email,
+          authorUid: currentUser.uid,
+          createdAt: serverTimestamp()
+        });
+      }
       window.closeModal();
       window.switchTab(postType);
     } catch (err) {
@@ -907,6 +942,9 @@
   };
 
   function resetForm(){
+    editingId = null;
+    document.getElementById("modalTitle").textContent = "New Record Entry";
+    document.getElementById("btnSubmit").textContent = "Submit Record";
     ["inName","inGame","inReason","inResult","inBirthday","inPhoto"]
       .forEach(id => document.getElementById(id).value = "");
     photoData = null;
